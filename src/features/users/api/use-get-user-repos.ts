@@ -5,9 +5,7 @@ export function useGetUserRepos(search?: string, repoCount?: number) {
 	const query = useQuery({
 		queryKey: ["getUserRepos", search, repoCount],
 		queryFn: async () => {
-			const response = await fetch(
-				`https://api.github.com/users/${search}/repos`,
-			);
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${search}/repos`);
 
 			if (!response.ok)
 				throw new Error(`Error searching user: ${response.status}`);

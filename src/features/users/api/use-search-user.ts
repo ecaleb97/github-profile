@@ -6,7 +6,7 @@ export function useSearchUser(search?: string) {
 		enabled: !!search,
 		queryKey: ["searchUser", search],
 		queryFn: async () => {
-			const response = await fetch(`https://api.github.com/users/${search}`);
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${search}`);
 
 			if (!response.ok)
 				throw new Error(`Error searching user: ${response.status}`);
